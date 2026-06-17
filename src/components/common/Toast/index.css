@@ -1,0 +1,130 @@
+/* ── Container ────────────────────────────────────────────────────────────── */
+
+.toast-container {
+  position: fixed;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  max-width: 360px;
+  width: calc(100% - var(--spacing-8));
+  pointer-events: none;
+}
+
+.toast-container--top-left    { top: var(--spacing-4); left: var(--spacing-4); }
+.toast-container--top-center  { top: var(--spacing-4); left: 50%; transform: translateX(-50%); }
+.toast-container--top-right   { top: var(--spacing-4); right: var(--spacing-4); }
+.toast-container--bottom-left    { bottom: var(--spacing-4); left: var(--spacing-4); }
+.toast-container--bottom-center  { bottom: var(--spacing-4); left: 50%; transform: translateX(-50%); }
+.toast-container--bottom-right   { bottom: var(--spacing-4); right: var(--spacing-4); }
+
+/* ── Toast ────────────────────────────────────────────────────────────────── */
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--color-bg-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border-left: 4px solid transparent;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity var(--duration-base) var(--easing-out),
+    transform var(--duration-base) var(--easing-spring);
+}
+
+.toast-container--bottom-left .toast,
+.toast-container--bottom-center .toast,
+.toast-container--bottom-right .toast {
+  transform: translateY(6px);
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Type variants ────────────────────────────────────────────────────────── */
+
+.toast--info    { border-left-color: var(--color-primary); }
+.toast--success { border-left-color: var(--color-success); }
+.toast--warning { border-left-color: var(--color-warning); }
+.toast--error   { border-left-color: var(--color-danger); }
+
+/* ── Icon ─────────────────────────────────────────────────────────────────── */
+
+.toast__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.toast--info    .toast__icon { background-color: var(--color-primary-alpha); color: var(--color-primary); }
+.toast--success .toast__icon { background-color: var(--color-success-alpha); color: var(--color-success); }
+.toast--warning .toast__icon { background-color: var(--color-warning-alpha); color: var(--color-warning); }
+.toast--error   .toast__icon { background-color: var(--color-danger-alpha);  color: var(--color-danger); }
+
+/* ── Body ─────────────────────────────────────────────────────────────────── */
+
+.toast__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.toast__title {
+  display: block;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.toast__message {
+  display: block;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-base);
+  word-break: break-word;
+}
+
+/* ── Close button ─────────────────────────────────────────────────────────── */
+
+.toast__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color var(--duration-fast), background-color var(--duration-fast);
+  margin-top: 1px;
+}
+
+.toast__close:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-muted);
+}

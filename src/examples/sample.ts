@@ -1,8 +1,8 @@
 import '@/styles/global.css'
 import './sample.css'
-import { Button } from '@/components/Button'
+import { Button } from '@/components/common/Button'
 import { BUTTON_VARIANTS, BUTTON_SIZES } from '@/tokens/constants'
-import type { ButtonVariant, ButtonSize } from '@/components/Button'
+import type { ButtonVariant, ButtonSize } from '@/components/common/Button'
 
 // ── Layout ────────────────────────────────────────────────────────────────────
 

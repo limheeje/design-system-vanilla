@@ -1,0 +1,128 @@
+/* ── Overlay ──────────────────────────────────────────────────────────────── */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--spacing-4);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--easing-out);
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+}
+
+/* No backdrop */
+
+.modal-overlay--no-backdrop {
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.modal-overlay--no-backdrop .modal {
+  pointer-events: auto;
+  box-shadow: var(--shadow-xl);
+}
+
+/* ── Modal ────────────────────────────────────────────────────────────────── */
+
+.modal {
+  background-color: var(--color-bg-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: min(480px, 100%);
+  max-height: calc(100dvh - var(--spacing-8));
+  overflow-y: auto;
+  transform: scale(0.95) translateY(-8px);
+  transition:
+    transform var(--duration-base) var(--easing-spring),
+    opacity var(--duration-base) var(--easing-out);
+}
+
+.modal-overlay.is-open .modal {
+  transform: scale(1) translateY(0);
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+
+.modal__header {
+  padding: var(--spacing-5) var(--spacing-5) 0;
+}
+
+.modal__title {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+/* ── Body ─────────────────────────────────────────────────────────────────── */
+
+.modal__body {
+  padding: var(--spacing-5);
+}
+
+.modal__header + .modal__body {
+  padding-top: var(--spacing-3);
+}
+
+.modal__description {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-base);
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-5) var(--spacing-5);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.modal__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 var(--spacing-4);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--easing-out),
+    opacity var(--duration-fast) var(--easing-out);
+}
+
+.modal__btn--cancel {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+}
+
+.modal__btn--cancel:hover {
+  background-color: var(--color-bg-muted);
+}
+
+.modal__btn--confirm {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.modal__btn--confirm:hover {
+  opacity: 0.9;
+}

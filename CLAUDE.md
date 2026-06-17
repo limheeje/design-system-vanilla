@@ -161,18 +161,63 @@ vite 설정 포함.
 
 ### 6. 컴포넌트 구조 규칙
 
+모든 컴포넌트는 `components/common/` 하위에 위치하며, 파일명은 `index.*` 고정이다.
+
+```
 components/
+  common/
+    Button/
+      index.ts          ← 공개 API 진입점
+      index.css         ← 컴포넌트 스타일
+      index.template.ts ← DOM 생성 로직
+      index.type.ts     ← 타입 정의
+    Modal/
+      index.ts
+      index.css
+      index.template.ts
+      index.type.ts
+```
 
-Button/
-index.ts
-button.css
-button.template.ts
-button.types.ts
+#### 6-1. 상수 관리 원칙
 
-Modal/
-index.ts
-modal.css
-modal.types.ts
+컴포넌트 내부에서 사용하는 변수명, 클래스명, 기본값, variant 목록 등 모든 고정값은
+컴포넌트 내부에 직접 선언하지 않는다.
+
+반드시 전역 상수 파일(`@/tokens/constants.ts`)에 선언하고, 컴포넌트에서 import하여 사용한다.
+
+금지:
+
+```ts
+const variant = 'primary'
+button.className = `btn btn--primary btn--md`
+```
+
+허용:
+
+```ts
+import { BUTTON_DEFAULTS, BUTTON_CLASS } from '@/tokens/constants'
+button.className = `${BUTTON_CLASS.base} ${BUTTON_CLASS.variant(variant)}`
+```
+
+#### 6-2. Import 경로 규칙
+
+컴포넌트 내부의 모든 import는 상대경로(`../`, `./` 등)를 사용하지 않는다.
+
+반드시 alias `@/`를 사용한다.
+
+금지:
+
+```ts
+import { ButtonOptions } from '../types/button'
+import { BUTTON_VARIANTS } from '../../tokens/constants'
+```
+
+허용:
+
+```ts
+import type { ButtonOptions } from '@/components/common/Button/index.type'
+import { BUTTON_VARIANTS } from '@/tokens/constants'
+```
 
 ---
 

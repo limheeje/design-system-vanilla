@@ -1,0 +1,136 @@
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+/* Label */
+.input-field__label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+/* Wrapper */
+.input-field__wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-default);
+  overflow: hidden;
+  transition:
+    border-color var(--duration-base) var(--easing-out),
+    box-shadow var(--duration-base) var(--easing-out);
+}
+
+/* Slots */
+.input-field__prefix,
+.input-field__suffix {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0 var(--spacing-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+}
+
+/* Input */
+.input-field__input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+}
+
+.input-field__input::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+/* Message */
+.input-field__message {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  min-height: 1.25em;
+  line-height: 1.25;
+}
+
+/* ── Focus ─────────────────────────────────────────────────────────────────── */
+
+.input-field--focused .input-field__wrapper {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-alpha);
+}
+
+/* ── Validation states ─────────────────────────────────────────────────────── */
+
+.input-field--error .input-field__wrapper {
+  border-color: var(--color-danger);
+}
+.input-field--error.input-field--focused .input-field__wrapper {
+  box-shadow: 0 0 0 3px var(--color-danger-alpha);
+}
+.input-field--error .input-field__message {
+  color: var(--color-danger);
+}
+
+.input-field--warning .input-field__wrapper {
+  border-color: var(--color-warning);
+}
+.input-field--warning.input-field--focused .input-field__wrapper {
+  box-shadow: 0 0 0 3px var(--color-warning-alpha);
+}
+.input-field--warning .input-field__message {
+  color: var(--color-warning);
+}
+
+.input-field--success .input-field__wrapper {
+  border-color: var(--color-success);
+}
+.input-field--success.input-field--focused .input-field__wrapper {
+  box-shadow: 0 0 0 3px var(--color-success-alpha);
+}
+.input-field--success .input-field__message {
+  color: var(--color-success);
+}
+
+/* ── Disabled ──────────────────────────────────────────────────────────────── */
+
+.input-field--disabled .input-field__label {
+  color: var(--color-text-disabled);
+}
+
+.input-field--disabled .input-field__wrapper {
+  background-color: var(--color-bg-muted);
+  border-color: var(--color-border);
+  cursor: not-allowed;
+}
+
+.input-field--disabled .input-field__input {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.input-field--disabled .input-field__prefix,
+.input-field--disabled .input-field__suffix {
+  color: var(--color-text-disabled);
+}
+
+/* ── Readonly ──────────────────────────────────────────────────────────────── */
+
+.input-field--readonly .input-field__wrapper {
+  background-color: var(--color-bg-subtle);
+  border-style: dashed;
+}
+
+.input-field--readonly .input-field__input {
+  color: var(--color-text-primary);
+  cursor: default;
+}
