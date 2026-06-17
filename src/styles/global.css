@@ -1,0 +1,21 @@
+@import '../tokens/color.css';
+@import '../tokens/typography.css';
+@import '../tokens/spacing.css';
+@import '../tokens/radius.css';
+@import '../tokens/shadow.css';
+@import '../tokens/motion.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-default);
+  line-height: var(--line-height-base);
+}

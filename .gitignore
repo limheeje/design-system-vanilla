@@ -1,0 +1,17 @@
+# OS 및 시스템 부산물
+.DS_Store
+Thumbs.db
+
+# 빌드 산출물 및 패키지
+/build/
+/dist/
+/node_modules/
+package-lock.json
+*.class
+
+# IDE 설정 폴더
+.idea/
+.vscode/
+
+# 환경 변수 및 보안 파일
+.env
